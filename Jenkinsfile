@@ -8,7 +8,7 @@ pipeline {
     agent any
 
     environment {
-        RETRY_DATA = loadRetryData()
+//        RETRY_DATA = loadRetryData()
     }
 
     stages {
