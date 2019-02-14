@@ -11,6 +11,7 @@ pipeline {
 
     environment {
         PREVIOUS_RETRY_DATA = loadRetryData()
+        CURRENT_RETRY_DATA = "{}"
     }
 
     stages {
@@ -28,6 +29,14 @@ pipeline {
             steps {
                 echo 'Running Stage 1'
             }
+            post {
+                success {
+                    setStageResult(true)
+                }
+                unsuccessful {
+                    setStageResult(false)
+                }
+            }
         }
 
         stage('Stage2') {
@@ -36,6 +45,14 @@ pipeline {
             }
              steps {
                 echo 'Running Stage 2'
+            }
+            post {
+                success {
+                    setStageResult(true)
+                }
+                unsuccessful {
+                    setStageResult(false)
+                }
             }
         }
 
