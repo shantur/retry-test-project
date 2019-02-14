@@ -33,7 +33,8 @@ pipeline {
         stage('Stage2') {
 //            when {
 //                expression { return needToRunStage(RETRY_DATA) }
-//            }            steps {
+//            }
+             steps {
                 echo 'Running Stage 2'
             }
         }
