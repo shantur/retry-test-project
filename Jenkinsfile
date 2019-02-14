@@ -22,9 +22,9 @@ pipeline {
 //        }
 
         stage('Stage1') {
-//            when {
-//                expression { return needToRunStage(RETRY_DATA) }
-//            }
+            when {
+                expression { return needToRunStage(RETRY_DATA) }
+            }
             steps {
                 echo 'Running Stage 1'
             }
