@@ -45,11 +45,11 @@ pipeline {
 
     }
 
-//    post {
-//        always {
-////            saveRetryData()
-//        }
-//    }
+    post {
+        always {
+            archiveRetryData()
+        }
+    }
 }
 
 
