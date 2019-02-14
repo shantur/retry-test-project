@@ -8,20 +8,30 @@ pipeline {
     agent any
 
     environment {
-        loadRetryData()
+        RETRY_DATA = loadRetryData()
     }
 
     stages {
 
+        stage('Initialize') {
+            steps {
+                loadRetryData()
+            }
+        }
+
         stage('Stage1') {
-            runStageIfNeeded() {
-                echo 'Running Stage 1'
+            steps {
+                runStageIfNeeded() {
+                    echo 'Running Stage 1'
+                }
             }
         }
 
         stage('Stage2') {
-            runStageIfNeeded() {
-                echo 'Running Stage 2'
+            steps {
+                runStageIfNeeded() {
+                    echo 'Running Stage 2'
+                }
             }
         }
 
