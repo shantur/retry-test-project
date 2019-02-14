@@ -31,9 +31,9 @@ pipeline {
         }
 
         stage('Stage2') {
-//            when {
-//                expression { return needToRunStage(PREVIOUS_RETRY_DATA) }
-//            }
+            when {
+                expression { return needToRunStage(PREVIOUS_RETRY_DATA) }
+            }
              steps {
                 echo 'Running Stage 2'
             }
