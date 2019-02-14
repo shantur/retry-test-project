@@ -3,7 +3,7 @@ library identifier: 'pipelineslib@master', retriever: modernSCM(
          remote: 'file:///Users/shantur/Devops/Pipelines/retry-lib'])
 
 
-previousRetryData = loadRetryData()
+def previousRetryData = loadRetryData()
 
 pipeline {
 
