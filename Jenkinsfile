@@ -10,7 +10,7 @@ pipeline {
     agent any
 
     environment {
-        RETRY_DATA = loadRetryData()
+        PREVIOUS_RETRY_DATA = loadRetryData()
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
 
         stage('Stage1') {
             when {
-                expression { return needToRunStage(RETRY_DATA) }
+                expression { return needToRunStage(PREVIOUS_RETRY_DATA) }
             }
             steps {
                 echo 'Running Stage 1'
@@ -32,7 +32,7 @@ pipeline {
 
         stage('Stage2') {
 //            when {
-//                expression { return needToRunStage(RETRY_DATA) }
+//                expression { return needToRunStage(PREVIOUS_RETRY_DATA) }
 //            }
              steps {
                 echo 'Running Stage 2'
