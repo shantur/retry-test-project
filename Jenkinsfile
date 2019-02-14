@@ -11,7 +11,7 @@ pipeline {
 
     environment {
         PREVIOUS_RETRY_DATA = loadRetryData()
-        CURRENT_RETRY_DATA = "{}"
+        CURRENT_RETRY_DATA = "{ }"
     }
 
     stages {
