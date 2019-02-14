@@ -3,15 +3,15 @@ library identifier: 'pipelineslib@master', retriever: modernSCM(
          remote: 'file:///Users/shantur/Devops/Pipelines/retry-lib'])
 
 
-def previousRetryData = loadRetryData()
+//def previousRetryData = loadRetryData()
 
 pipeline {
 
     agent any
 
-//    environment {
-//        RETRY_DATA = loadRetryData()
-//    }
+    environment {
+        RETRY_DATA = loadRetryData()
+    }
 
     stages {
 
@@ -23,7 +23,7 @@ pipeline {
 
         stage('Stage1') {
             when {
-                expression { return needToRunStage(previousRetryData) }
+                expression { return needToRunStage(RETRY_DATA) }
             }
             steps {
                 echo 'Running Stage 1'
@@ -32,7 +32,7 @@ pipeline {
 
         stage('Stage2') {
             when {
-                expression { return needToRunStage(previousRetryData) }
+                expression { return needToRunStage(RETRY_DATA) }
             }
             steps {
                 echo 'Running Stage 2'
