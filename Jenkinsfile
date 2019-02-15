@@ -18,44 +18,46 @@ pipeline {
     }
 
     stages {
-        failFast false
-        parallel {
-            stage('Stage1') {
-                when {
-                    expression { return needToRunStage() }
-                }
-                steps {
-                    echo 'Running Stage 1'
-                    sh "echo Stage1 Build:${env.BUILD_NUMBER} > stage1.txt"
-                    failStageIfNeeded(params.STAGE_1_SUCCESS)
-                }
-                post {
-                    success {
-                        archiveStageArtifacts('stage1.txt')
-                        setStageResult(true)
+        stage('Build') {
+            failFast false
+            parallel {
+                stage('Stage1') {
+                    when {
+                        expression { return needToRunStage() }
                     }
-                    unsuccessful {
-                        setStageResult(false)
+                    steps {
+                        echo 'Running Stage 1'
+                        sh "echo Stage1 Build:${env.BUILD_NUMBER} > stage1.txt"
+                        failStageIfNeeded(params.STAGE_1_SUCCESS)
+                    }
+                    post {
+                        success {
+                            archiveStageArtifacts('stage1.txt')
+                            setStageResult(true)
+                        }
+                        unsuccessful {
+                            setStageResult(false)
+                        }
                     }
                 }
-            }
 
-            stage('Stage2') {
-                when {
-                    expression { return needToRunStage() }
-                }
-                steps {
-                    echo 'Running Stage 2'
-                    sh "echo Stage2 Build:${env.BUILD_NUMBER} > stage2.txt"
-                    failStageIfNeeded(params.STAGE_2_SUCCESS)
-                }
-                post {
-                    success {
-                        archiveStageArtifacts('stage2.txt')
-                        setStageResult(true)
+                stage('Stage2') {
+                    when {
+                        expression { return needToRunStage() }
                     }
-                    unsuccessful {
-                        setStageResult(false)
+                    steps {
+                        echo 'Running Stage 2'
+                        sh "echo Stage2 Build:${env.BUILD_NUMBER} > stage2.txt"
+                        failStageIfNeeded(params.STAGE_2_SUCCESS)
+                    }
+                    post {
+                        success {
+                            archiveStageArtifacts('stage2.txt')
+                            setStageResult(true)
+                        }
+                        unsuccessful {
+                            setStageResult(false)
+                        }
                     }
                 }
             }
