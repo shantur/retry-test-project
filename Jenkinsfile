@@ -7,6 +7,10 @@ pipeline {
 
     agent any
 
+    environment {
+        LOG_LEVEL = "5"
+    }
+
     stages {
 
         stage('Stage1') {
