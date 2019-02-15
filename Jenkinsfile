@@ -12,6 +12,7 @@ pipeline {
     }
 
     parameters {
+        booleanParam(name: 'FORCE_REBUILD', defaultValue: false, description: 'Make Stage 1 pass')
         booleanParam(name: 'STAGE_1_SUCCESS', defaultValue: true, description: 'Make Stage 1 pass')
         booleanParam(name: 'STAGE_2_SUCCESS', defaultValue: true, description: 'Make Stage 2 pass')
     }
