@@ -19,9 +19,11 @@ pipeline {
             }
             steps {
                 echo 'Running Stage 1'
+                sh "echo Stage1 Build:${env.BUILD_NUMBER} > stage1.txt"
             }
             post {
                 success {
+                    archiveStageArtifacts artifacts: 'stage1.txt'
                     setStageResult(true)
                 }
                 unsuccessful {
@@ -35,10 +37,12 @@ pipeline {
                 expression { return needToRunStage() }
             }
              steps {
-                echo 'Running Stage 2'
+                 echo 'Running Stage 2'
+                 sh "echo Stage2 Build:${env.BUILD_NUMBER} > stage2.txt"
             }
             post {
                 success {
+                    archiveStageArtifacts artifacts: 'stage2.txt'
                     setStageResult(true)
                 }
                 unsuccessful {
