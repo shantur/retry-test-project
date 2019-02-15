@@ -11,6 +11,11 @@ pipeline {
         LOG_LEVEL = "5"
     }
 
+    parameters {
+        booleanParam(name: 'STAGE_1_SUCCESS', defaultValue: true, description: 'Make Stage 1 pass'),
+        booleanParam(name: 'STAGE_2_SUCCESS', defaultValue: true, description: 'Make Stage 2 pass'),
+    }
+
     stages {
 
         stage('Stage1') {
@@ -20,6 +25,7 @@ pipeline {
             steps {
                 echo 'Running Stage 1'
                 sh "echo Stage1 Build:${env.BUILD_NUMBER} > stage1.txt"
+                failStageIfNeeded(params.STAGE_1_SUCCESS)
             }
             post {
                 success {
@@ -39,6 +45,7 @@ pipeline {
              steps {
                  echo 'Running Stage 2'
                  sh "echo Stage2 Build:${env.BUILD_NUMBER} > stage2.txt"
+                 failStageIfNeeded(params.STAGE_2_SUCCESS)
             }
             post {
                 success {
@@ -58,6 +65,12 @@ pipeline {
         always {
             archiveRetryData()
         }
+    }
+}
+
+def failStageIfNeeded(boolean success) {
+    if (!success) {
+        sh 'exit 1'
     }
 }
 
