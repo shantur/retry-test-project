@@ -23,7 +23,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveStageArtifacts artifacts: 'stage1.txt'
+                    archiveStageArtifacts('stage1.txt')
                     setStageResult(true)
                 }
                 unsuccessful {
@@ -42,7 +42,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveStageArtifacts artifacts: 'stage2.txt'
+                    archiveStageArtifacts('stage2.txt')
                     setStageResult(true)
                 }
                 unsuccessful {
