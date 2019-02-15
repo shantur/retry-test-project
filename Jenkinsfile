@@ -48,9 +48,6 @@ pipeline {
                 unsuccessful {
                     setStageResult(false)
                 }
-                always {
-                    echo 'Post always'
-                }
             }
         }
 
