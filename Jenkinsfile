@@ -46,8 +46,8 @@ pipeline {
                         expression { return needToRunStage() }
                     }
                     steps {
-                        echo 'Running Stage 2'
-                        sh "echo Stage2 Build:${env.BUILD_NUMBER} > stage2.txt"
+                        echo 'Running Stage 2 with feature2'
+                        sh "echo Stage2 feature 2   Build:${env.BUILD_NUMBER} > stage2.txt"
                         failStageIfNeeded(params.STAGE_2_SUCCESS)
                     }
                     post {
